@@ -8,6 +8,7 @@ const registerFields = [
     body("email").isEmail(),
     body("password"),
     body("fullname").isString().notEmpty(),
+    body("phonenumber").isMobilePhone("fa-IR").notEmpty(),
 ]
 
 Router.post("/", process.Session, registerFields, validateRequest, async (req, res) => {
