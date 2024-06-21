@@ -14,6 +14,10 @@ const userSchema = new Schema({
     profileURLPath: {
         type: String,
         default: "/images/users/noProfile.jpg"
+    },
+    money: {
+        type: Number,
+        default: 0
     }
 })
 
