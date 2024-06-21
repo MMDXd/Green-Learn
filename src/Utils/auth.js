@@ -66,6 +66,19 @@ const getUserDataByEmail = async (email) => {
 
 /**
  * 
+ * @param {Number} phonenumber 
+ * @returns {Promise<{valid: Boolean, user: object}>} valid
+ */
+const getUserDataByPhone = async (phonenumber) => {
+    const user = await User.findOne({phonenumber})
+    
+    if (!user) return {valid: false}
+
+    return {valid: true, user}
+}
+
+/**
+ * 
  * @param {ObjectId} id 
  * @returns {Promise<{valid: Boolean, user: object}>} valid
  */
@@ -126,5 +139,6 @@ module.exports = {
     getUserDataById,
     deleteUser,
     setUserAdmin,
-    removeAdminPerm
+    removeAdminPerm,
+    getUserDataByPhone
 }
