@@ -14,14 +14,14 @@ const registerFields = [
 Router.post("/", process.Session, registerFields, validateRequest, async (req, res) => {
     const {email, fullname, password, phonenumber} = req.body
     if ((await getUserDataByEmail(email)).valid) {
-        return res.status(400).json({message: "duplicate email"})
+        return res.status(400).json({message: "duplicate email", success: false})
     }
     if ((await getUserDataByPhone(phonenumber)).valid) {
-        return res.status(400).json({message: "duplicate phonenumber"})
+        return res.status(400).json({message: "duplicate phonenumber", success: false})
     }
     const user = new User({email, fullname, password, phonenumber})
     await user.save()
-    res.status(200).json({message: "created successfully"})
+    res.status(200).json({message: "created successfully", success: true})
 })
 
 module.exports = {
